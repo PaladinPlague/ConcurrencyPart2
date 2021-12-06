@@ -16,12 +16,14 @@ public class Main {
         //Create an instance of ThreadMonitor
         ThreadMonitor TM = new ThreadMonitor();
         //Run the Thread Monitor TM
+        System.out.println("------------------------------------STARTING----------------------------------------");
 
         TM.run();
         while(true) {
             Thread.sleep(60000);
             System.out.println("-------------------------------REFRESHING-------------------------------------------");
             TM.run();
+
         }
     }
 
