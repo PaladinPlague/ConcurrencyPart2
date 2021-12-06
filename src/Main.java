@@ -18,13 +18,10 @@ public class Main {
         //Run the Thread Monitor TM
 
         TM.run();
-        ThreadGroup[] group = TM.returnThreadGroup();
         while(true) {
-            Thread.sleep(10000);
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
+            Thread.sleep(60000);
             System.out.println("-------------------------------REFRESHING-------------------------------------------");
-            TM.runWithGivenTGS(group);
+            TM.run();
         }
     }
 

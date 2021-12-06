@@ -92,31 +92,6 @@ public class ThreadMonitor {
         }
     }
 
-   public void runWithGivenTGS(ThreadGroup[] TGS){
 
-       //Iterates over the array that holds all thread
-       //groups
-       for (ThreadGroup tg : TGS) {
-           //print the ThreadGroup Name
-           System.out.println(tg.getName());
-
-           //Print the required information
-           //iterate over all the Thread in the current ThreadGroup
-           int num_threads = tg.activeCount();
-           Thread[] Ts = new Thread[num_threads];
-           tg.enumerate(Ts,false);
-           for (int x = 0; x < num_threads; x++) {
-               //Print out the details of the current Thread
-               printThread(Ts[x]);
-           }
-       }
-
-
-   }
-
-   public ThreadGroup[] returnThreadGroup(){
-        ThreadGroup[] returning = getAllTreadGroup();
-        return returning;
-   }
 
 }
