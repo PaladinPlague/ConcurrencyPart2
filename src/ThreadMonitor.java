@@ -16,6 +16,8 @@ public class ThreadMonitor {
     *   For GUI you may need to add some new methods to make return a strings for u to put in GUI.
      */
 
+    Scanner sc = new Scanner(System.in);
+
     public static ThreadGroup FindRootThreadGroup(){
         //Get the Thread group we are currently in.
         ThreadGroup current = Thread.currentThread().getThreadGroup();
@@ -65,14 +67,12 @@ public class ThreadMonitor {
                 ", is daemon?: "+ thread.isDaemon( ));
     }
 
-    public static void searchThread () {
+    public void searchThread () {
         //Sets up a new scanner for this method
-        Scanner sc = new Scanner(System.in);
         //Asks the user for the name of a thread
         System.out.print("Enter the thread name: ");
         String name = sc.nextLine();
         //Closes the scanner after we're done
-        sc.close();
 
         //Searches for that specific thread
         //Uses the same methods as in run() to iterate through all threads
@@ -101,13 +101,11 @@ public class ThreadMonitor {
         System.out.println("There is no thread with this name");
     }
 
-    public static void filterGroup() {
+    public void filterGroup() {
         //Sets up a new scanner for this method
-        Scanner sc = new Scanner(System.in);
         //Asks the user for the name of a thread group
         System.out.print("Enter the group name: ");
         String name = sc.nextLine();
-        sc.close();
 
         //Uses the same methods as in run() to iterate through all threads
         ThreadGroup[] groups = getAllTreadGroup();
@@ -152,28 +150,20 @@ public class ThreadMonitor {
         }
 
         //Search for a thread via name
-        //Very primitive - This can be handled with a button in a GUI
         System.out.println();
         //Asks the user if they want to search using a scanner to read lines
         System.out.print("Search for a thread? [Y/N]: ");
-        Scanner sc = new Scanner(System.in);
         //If they do, searches for a thread with a name later defined
         if (sc.nextLine().equals("Y")) {
             searchThread();
         }
 
         //Filter by a thread group
-        //Also very primitive - This can be handled with a button in a GUI
         System.out.println();
         //Asks the user if they want to filter the thread list by group
         System.out.print("Filter by thread group? [Y/N]: ");
         if (sc.nextLine().equals("Y")) {
             filterGroup();
         }
-
-        //Closes the scanner
-        sc.close();
-        //Note that when taken from Git the program never actually ended so this is purely to let it end
-        System.exit(0);
     }
 }
