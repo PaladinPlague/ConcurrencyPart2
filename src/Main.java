@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.EventObject;
+import java.util.Objects;
 import java.util.TimerTask;
 
 public class Main {
@@ -26,7 +27,9 @@ public class Main {
         JPanel panel2 = new JPanel();
 
 
-        frame.setSize(1080, 540);
+        frame.setSize(1920, 1080);
+
+
 
         JButton startBtn = new JButton("Start Thread");
 
@@ -46,6 +49,12 @@ public class Main {
         JTextArea searchReturn = new JTextArea(10,10);
         searchReturn.setEditable(false);
 
+        JLabel stopLabel = new JLabel("Stop Thread/s: ");
+        JTextArea stopInformation = new JTextArea("To stop a Thread, you need to enter the name of the Thread and check console for result.\n To stop multiple Threads, you need to enter the list of thread names separated with comma with no space in between.",10,10);
+        JTextField stopText = new JTextField(20);
+        JButton submitButton3 = new JButton("Submit");
+
+
         panel1.add(startBtn);
         panel1.add(console);
 
@@ -60,6 +69,15 @@ public class Main {
         panel2.add(searchSubmitButton);
         panel2.add(searchReturn);
         searchReturn.setText("Results will be displayed here!");
+
+
+        panel1.add(stopLabel);
+        panel1.add(stopText);
+        panel1.add(submitButton3);
+        panel1.add(stopInformation);
+
+
+
 
 
         frame.getContentPane().add(panel1,"Center");
@@ -87,6 +105,21 @@ public class Main {
                 searchReturn.setText(monitor.searchThread(search.getText()));
             }
         });
+
+        submitButton3.addActionListener(e -> {
+            if(!Objects.equals(stopText.getText(), "")){
+                String[] threadList = stopText.getText().split("[,]", 0);
+                for (String s : threadList) {
+                    System.out.println("Trying to stop thread(s):");
+                    System.out.println(s);
+                    monitor.stopThread(s);
+                }
+
+
+
+            }
+        });
+
 
     }
 

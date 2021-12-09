@@ -23,11 +23,16 @@ public class DummyGroups {
 class DummyThreads implements Runnable{
     @Override
     public void run() {
-        while (true){
-            try{
+        while (true) {
+            try {
                 Thread.sleep(1000);
-                for(int i = 0; i<1000000; i++);
-            }catch (InterruptedException ie){}
+
+            } catch (InterruptedException ie) {
+
+                Thread.currentThread().interrupt();
+                break;
+
+            }
         }
     }
 }

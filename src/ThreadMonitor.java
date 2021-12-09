@@ -16,7 +16,6 @@ public class ThreadMonitor {
     *   For GUI you may need to add some new methods to make return a strings for u to put in GUI.
      */
 
-    Scanner sc = new Scanner(System.in);
 
     public static ThreadGroup FindRootThreadGroup(){
         //Get the Thread group we are currently in.
@@ -109,6 +108,36 @@ public class ThreadMonitor {
         System.out.println(error);
         return error;
     }
+
+    //Stopping the Tread
+    public void stopThread (String name) {
+
+
+
+        //Searches for that specific thread
+        //Uses the same methods as in run() to iterate through all threads
+        ThreadGroup[] TGS;
+        TGS = getAllTreadGroup();
+        for (ThreadGroup tg : TGS) {
+            int num_threads = tg.activeCount();
+            Thread[] Ts = new Thread[num_threads];
+            tg.enumerate(Ts,false);
+            for (int x = 0; x < num_threads; x++) {
+                //If the thread name is equal to the string the user is looking for, it returns that thread
+                if (Ts[x] != null) {
+                    if (Ts[x].getName().equals(name)) {
+                        //If it exists, we just interrupt the thread
+                        Ts[x].interrupt();
+                        System.out.println("Stopping thread(s) successful");
+                        return;
+                    }
+                }
+            }
+        }
+        //If it doesn't exist, tells the user
+        System.out.println("There is no thread with this name(s),");
+    }
+
 
     public String filterGroup(String groupName) {
 
