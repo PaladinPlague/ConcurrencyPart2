@@ -1,3 +1,7 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class Main {
 
     /*
@@ -8,6 +12,30 @@ public class Main {
 
 
     public static void main(String[  ] args) throws InterruptedException {
+
+
+        JFrame frame = new JFrame("Concurrency GUI");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 300);
+        JButton button1 = new JButton("Start Thread");
+        frame.getContentPane().add(button1);
+        frame.setVisible(true);
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main starting = new Main();
+                try {
+                    starting.start();
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
+            }
+        });
+
+
+    }
+
+    public void start() throws InterruptedException {
 
         //Building multiply dummy Thread Groups each fills with some dummy threads
         //just check if the JVM Monitor Namely TM can pick it up.
@@ -23,7 +51,6 @@ public class Main {
             Thread.sleep(60000);
             System.out.println("-------------------------------REFRESHING-------------------------------------------");
             TM.run();
-
         }
     }
 
