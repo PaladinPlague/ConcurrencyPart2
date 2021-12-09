@@ -1,6 +1,9 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class Main {
-
-
 
     /*
      * Main.java
@@ -8,7 +11,7 @@ public class Main {
      *
      */
 
-    public static void main(String[  ] args){
+    public static void main(String[] args){
 
         JFrame frame = new JFrame("Concurrency GUI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,11 +45,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main starting = new Main();
-                try {
-                    starting.start();
-                } catch (InterruptedException interruptedException) {
-                    interruptedException.printStackTrace();
-                }
+                starting.start();
             }
 
         });
@@ -57,16 +56,20 @@ public class Main {
             }
         });
 
+
+
+
+
+
+    }
+
+    public void start(){
         //Building multiply dummy Thread Groups each fills with some dummy threads
         //just check if the JVM Monitor Namely TM can pick it up.
         DummyGroups dg = new DummyGroups();
 
         startRefreshing();
         startFunctions();
-
-
-
-
     }
     public static void startRefreshing(){
         Runnable refreshThread = new refreshThread();
