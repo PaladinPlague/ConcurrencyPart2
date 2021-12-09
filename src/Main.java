@@ -28,6 +28,7 @@ public class Main {
         JLabel searchLabel = new JLabel("Search: ");
         JTextField search = new JTextField(20);
         JButton submitButton2 = new JButton("Submit");
+        JTextField console = new JTextField(20);
 
 
         panel1.add(button1);
@@ -37,6 +38,7 @@ public class Main {
         panel2.add(searchLabel);
         panel2.add(search);
         panel2.add(submitButton2);
+
 
         frame.getContentPane().add(BorderLayout.SOUTH, panel1);
         frame.getContentPane().add(BorderLayout.BEFORE_LINE_BEGINS, panel2);
