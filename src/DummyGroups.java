@@ -1,4 +1,5 @@
 public class DummyGroups {
+// Creating based on Slides and for Testing purposes
 
     public DummyGroups(){
         ThreadGroup a = new ThreadGroup("G-A");

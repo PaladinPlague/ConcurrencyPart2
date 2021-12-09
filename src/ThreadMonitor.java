@@ -4,17 +4,9 @@ public class ThreadMonitor {
 
     /*
     * ThreadMonitor.java
-    * Firstly created by Nuoxu Li @ 03 Dec 2021
-    *
     * Algorithms follow Note 8.3
     *
-    * Notes to Suleman, Scott:
-    *   this program is just print out the required information of each thread.
-    *   for Part A/Task 2/2.2 (second 10 marker) you need to make use of getAllThreadGroups() function,
-    *   that will return you an Array of all the Thread group currently in JVM. after that is upto u to do what ever.
-    * Note to Mark:
-    *   For GUI you may need to add some new methods to make return a strings for u to put in GUI.
-     */
+  */
 
 
     public static ThreadGroup FindRootThreadGroup(){
@@ -109,7 +101,7 @@ public class ThreadMonitor {
         return error;
     }
 
-    //Stopping the Tread
+    //Stopping the Thread
     public void stopThread (String name) {
 
 
@@ -140,7 +132,7 @@ public class ThreadMonitor {
 
 
     public String filterGroup(String groupName) {
-
+        System.out.println("Trying to Filter...");
         StringBuilder sb =  new StringBuilder();
         //Uses the same methods as in run() to iterate through all threads
         ThreadGroup[] groups = getAllTreadGroup();
@@ -199,7 +191,7 @@ class refreshThread implements Runnable{
         monitor.tmRun();
         while (true){
             try{
-                Thread.sleep((10*1000));
+                Thread.sleep((20000));
                 System.out.println("------------------------------------REFRESHING----------------------------------------");
 
                 monitor.tmRun();
