@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args){
 
-        JFrame frame = new JFrame("Concurrency GUI");
+        JFrame frame = new JFrame("Concurrency GUI Part 2");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
