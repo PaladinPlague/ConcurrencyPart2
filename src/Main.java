@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,9 +17,29 @@ public class Main {
 
         JFrame frame = new JFrame("Concurrency GUI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 300);
+        JPanel panel1 = new JPanel();
+        JPanel panel2 = new JPanel();
+        JPanel panel3 = new JPanel();
+        frame.setSize(750, 300);
+        JLabel filterLabel = new JLabel("Filter: ");
         JButton button1 = new JButton("Start Thread");
-        frame.getContentPane().add(button1);
+        JTextField filter = new JTextField(20);
+        JButton submitButton1 = new JButton("Submit");
+        JLabel searchLabel = new JLabel("Search: ");
+        JTextField search = new JTextField(20);
+        JButton submitButton2 = new JButton("Submit");
+
+
+        panel1.add(button1);
+        panel2.add(filterLabel);
+        panel2.add(filter);
+        panel2.add(submitButton1);
+        panel2.add(searchLabel);
+        panel2.add(search);
+        panel2.add(submitButton2);
+
+        frame.getContentPane().add(BorderLayout.SOUTH, panel1);
+        frame.getContentPane().add(BorderLayout.BEFORE_LINE_BEGINS, panel2);
         frame.setVisible(true);
         button1.addActionListener(new ActionListener() {
             @Override
@@ -29,6 +50,13 @@ public class Main {
                 } catch (InterruptedException interruptedException) {
                     interruptedException.printStackTrace();
                 }
+            }
+
+        });
+        filter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Hello");
             }
         });
 
@@ -47,11 +75,7 @@ public class Main {
         System.out.println("------------------------------------STARTING----------------------------------------");
 
         TM.run();
-        while(true) {
-            Thread.sleep(60000);
-            System.out.println("-------------------------------REFRESHING-------------------------------------------");
-            TM.run();
-        }
+
     }
 
 
