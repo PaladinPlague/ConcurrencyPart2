@@ -1,11 +1,11 @@
 public class DummyGroups {
 
     public DummyGroups(){
-        ThreadGroup a = new ThreadGroup("G(A)");
-        ThreadGroup b = new ThreadGroup("G(B)");
-        ThreadGroup c = new ThreadGroup("G(C)");
-        ThreadGroup d = new ThreadGroup("G(D)");
-        ThreadGroup ae = new ThreadGroup(a,"G(A(E))");
+        ThreadGroup a = new ThreadGroup("G-A");
+        ThreadGroup b = new ThreadGroup("G-B");
+        ThreadGroup c = new ThreadGroup("G-C");
+        ThreadGroup d = new ThreadGroup("G-D");
+        ThreadGroup ae = new ThreadGroup(a,"G-A-E");
 
         (new Thread(a, new DummyThreads())).start();
         (new Thread(a, new DummyThreads())).start();
