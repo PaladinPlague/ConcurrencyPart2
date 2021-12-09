@@ -26,8 +26,15 @@ class DummyThreads implements Runnable{
         while (true){
             try{
                 Thread.sleep(1000);
-                for(int i = 0; i<1000000; i++);
-            }catch (InterruptedException ie){}
+
+            }catch (InterruptedException ie){
+
+                Thread.currentThread().interrupt();
+                break;
+
+
+
+            }
         }
     }
 }

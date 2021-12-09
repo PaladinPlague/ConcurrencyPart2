@@ -18,16 +18,26 @@ public class Main {
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
         JPanel panel3 = new JPanel();
-        frame.setSize(750, 300);
+        frame.setSize(1150, 150);
+        frame.setResizable(false);
+
         JLabel filterLabel = new JLabel("Filter: ");
         JButton button1 = new JButton("Start Thread");
         JTextField filter = new JTextField(20);
         JButton submitButton1 = new JButton("Submit");
         JLabel searchLabel = new JLabel("Search: ");
+
+        JLabel stopLabel = new JLabel("Stop Thread: ");
+        JTextField stopText = new JTextField(20);
+        JButton submitButton3 = new JButton("Submit");
+
         JTextField search = new JTextField(20);
         JButton submitButton2 = new JButton("Submit");
-        JTextField console = new JTextField(20);
 
+
+
+
+        ThreadMonitor checking = new ThreadMonitor();
 
         panel1.add(button1);
         panel2.add(filterLabel);
@@ -36,6 +46,9 @@ public class Main {
         panel2.add(searchLabel);
         panel2.add(search);
         panel2.add(submitButton2);
+        panel2.add(stopLabel);
+        panel2.add(stopText);
+        panel2.add(submitButton3);
 
 
         frame.getContentPane().add(BorderLayout.SOUTH, panel1);
@@ -49,17 +62,44 @@ public class Main {
             }
 
         });
-        filter.addActionListener(new ActionListener() {
+        submitButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Helle4teteo");
+                if(search.getText() != ""){
+
+                    checking.searchThread(search.getText());
+
+
+                }
             }
         });
+        submitButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(filter.getText() != ""){
+
+                    checking.filterGroup(filter.getText());
+
+
+                }
+            }
+        });
+        submitButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(stopText.getText() != ""){
+                    String[] threadList = stopText.getText().split("[,]", 0);
+                    for(int i = 0; i<threadList.length; i++){
+                        System.out.println("Trying to stop thread(s):");
+                        System.out.println(threadList[i]);
+                        checking.stopThread(threadList[i]);
+                    }
 
 
 
-
-
+                }
+            }
+        });
 
     }
 
@@ -69,7 +109,7 @@ public class Main {
         DummyGroups dg = new DummyGroups();
 
         startRefreshing();
-        startFunctions();
+        //startFunctions();
     }
     public static void startRefreshing(){
         Runnable refreshThread = new refreshThread();
