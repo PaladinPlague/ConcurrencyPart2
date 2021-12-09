@@ -126,7 +126,28 @@ public class ThreadMonitor {
         System.out.println("No such thread group exists");
     }
 
-    public void run(){
+    public void funcRun(){
+
+        //Search for a thread via name
+        System.out.println();
+        //Asks the user if they want to search using a scanner to read lines
+        System.out.print("Search for a thread? [Y/N]: ");
+        //If they do, searches for a thread with a name later defined
+        if (sc.nextLine().equals("Y")) {
+            searchThread();
+        }
+
+        //Filter by a thread group
+        System.out.println();
+        //Asks the user if they want to filter the thread list by group
+        System.out.print("Filter by thread group? [Y/N]: ");
+        if (sc.nextLine().equals("Y")) {
+            filterGroup();
+        }
+
+    }
+
+    public void tmRun(){
 
         //Calls the previous method
         ThreadGroup[] TGS;
@@ -149,6 +170,7 @@ public class ThreadMonitor {
             }
         }
 
+        /*
         //Search for a thread via name
         System.out.println();
         //Asks the user if they want to search using a scanner to read lines
@@ -164,6 +186,37 @@ public class ThreadMonitor {
         System.out.print("Filter by thread group? [Y/N]: ");
         if (sc.nextLine().equals("Y")) {
             filterGroup();
+        }
+
+         */
+    }
+}
+class refreshThread implements Runnable{
+
+    ThreadMonitor monitor = new ThreadMonitor();
+    @Override
+    public void run() {
+        System.out.println("------------------------------------STARTING----------------------------------------");
+        monitor.tmRun();
+        while (true){
+            try{
+                Thread.sleep((10*1000));
+                System.out.println("------------------------------------REFRESHING----------------------------------------");
+                monitor.tmRun();
+            }catch (InterruptedException ie){}
+        }
+    }
+}
+
+class functionThread implements Runnable{
+
+    ThreadMonitor monitor = new ThreadMonitor();
+    @Override
+    public void run() {
+
+        while (true){
+            System.out.println("------------------------------------Question Time----------------------------------------");
+            monitor.funcRun();
         }
     }
 }

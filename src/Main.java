@@ -1,5 +1,7 @@
 public class Main {
 
+
+
     /*
      * Main.java
      * Firstly created by Jackson Blair @ Nov 18, 2021 4:11pm UTC
@@ -12,17 +14,22 @@ public class Main {
         //just check if the JVM Monitor Namely TM can pick it up.
         DummyGroups dg = new DummyGroups();
 
-        //Create an instance of ThreadMonitor
-        ThreadMonitor TM = new ThreadMonitor();
-        //Run the Thread Monitor TM
-        System.out.println("------------------------------------STARTING----------------------------------------");
+        startRefreshing();
+        startFunctions();
 
-        TM.run();
-        while(true) {
-            Thread.sleep(10000);
-            System.out.println("-------------------------------REFRESHING-------------------------------------------");
-            TM.run();
 
-        }
+
+
     }
+    public static void startRefreshing(){
+        Object refreshThread = new refreshThread();
+        (new Thread((Runnable) refreshThread)).start();
+    }
+
+    public static void startFunctions(){
+        Object functionThread = new functionThread();
+        (new Thread((Runnable) functionThread)).start();
+    }
+
+
 }
