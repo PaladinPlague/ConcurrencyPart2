@@ -10,24 +10,29 @@ public class DummyGroups {
         (new Thread(a, new DummyThreads())).start();
         (new Thread(a, new DummyThreads())).start();
         (new Thread(a, new DummyThreads())).start();
+        (new Thread(ae, new DummyThreads())).start();
         (new Thread(b, new DummyThreads())).start();
         (new Thread(b, new DummyThreads())).start();
         (new Thread(c, new DummyThreads())).start();
         (new Thread(c, new DummyThreads())).start();
         (new Thread(d, new DummyThreads())).start();
         (new Thread(ae, new DummyThreads())).start();
+        //set up a list of dummy thread which do Nothing
+
     }
 
-
-}
-class DummyThreads implements Runnable{
-    @Override
-    public void run() {
-        while (true){
-            try{
-                Thread.sleep(1000);
-                for(int i = 0; i<1000000; i++);
-            }catch (InterruptedException ie){}
+    static class DummyThreads implements Runnable{
+        @Override
+        public void run() {
+            while (true){
+                try{
+                    Thread.sleep(1000);
+                    for(int i = 0; i<1000000; i++);
+                }catch (InterruptedException ie){}
+            }
         }
     }
+
+
 }
+
