@@ -67,11 +67,10 @@ public class ThreadMonitor {
                 ", is daemon?: "+ thread.isDaemon( ));
     }
 
-    public void searchThread () {
+    public void searchThread (String name) {
         //Sets up a new scanner for this method
         //Asks the user for the name of a thread
-        System.out.print("Enter the thread name: ");
-        String name = sc.nextLine();
+
         //Closes the scanner after we're done
 
         //Searches for that specific thread
@@ -101,12 +100,11 @@ public class ThreadMonitor {
         System.out.println("There is no thread with this name");
     }
 
-    public void filterGroup() {
+    public void filterGroup(String name) {
         //Sets up a new scanner for this method
         //Asks the user for the name of a thread group
-        System.out.print("Enter the group name: ");
-        String name = sc.nextLine();
 
+        System.out.println("Filtering Thread");
         //Uses the same methods as in run() to iterate through all threads
         ThreadGroup[] groups = getAllTreadGroup();
         for (ThreadGroup group : groups) {
@@ -128,22 +126,7 @@ public class ThreadMonitor {
 
     public void funcRun(){
 
-        //Search for a thread via name
-        System.out.println();
-        //Asks the user if they want to search using a scanner to read lines
-        System.out.print("Search for a thread? [Y/N]: ");
-        //If they do, searches for a thread with a name later defined
-        if (sc.nextLine().equals("Y")) {
-            searchThread();
-        }
 
-        //Filter by a thread group
-        System.out.println();
-        //Asks the user if they want to filter the thread list by group
-        System.out.print("Filter by thread group? [Y/N]: ");
-        if (sc.nextLine().equals("Y")) {
-            filterGroup();
-        }
 
     }
 

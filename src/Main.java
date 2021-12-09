@@ -18,7 +18,7 @@ public class Main {
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
         JPanel panel3 = new JPanel();
-        frame.setSize(750, 300);
+        frame.setSize(750, 150);
         JLabel filterLabel = new JLabel("Filter: ");
         JButton button1 = new JButton("Start Thread");
         JTextField filter = new JTextField(20);
@@ -27,7 +27,7 @@ public class Main {
         JTextField search = new JTextField(20);
         JButton submitButton2 = new JButton("Submit");
         JTextField console = new JTextField(20);
-
+        ThreadMonitor checking = new ThreadMonitor();
 
         panel1.add(button1);
         panel2.add(filterLabel);
@@ -49,10 +49,26 @@ public class Main {
             }
 
         });
-        filter.addActionListener(new ActionListener() {
+        submitButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Helle4teteo");
+                if(search.getText() != ""){
+
+                    checking.searchThread(search.getText());
+
+
+                }
+            }
+        });
+        submitButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(filter.getText() != ""){
+
+                    checking.filterGroup(filter.getText());
+
+
+                }
             }
         });
 
@@ -69,7 +85,7 @@ public class Main {
         DummyGroups dg = new DummyGroups();
 
         startRefreshing();
-        startFunctions();
+        //startFunctions();
     }
     public static void startRefreshing(){
         Runnable refreshThread = new refreshThread();
