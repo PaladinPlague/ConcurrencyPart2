@@ -69,13 +69,19 @@ public class Main {
         //just check if the JVM Monitor Namely TM can pick it up.
         DummyGroups dg = new DummyGroups();
 
-        //Create an instance of ThreadMonitor
-        ThreadMonitor TM = new ThreadMonitor();
-        //Run the Thread Monitor TM
-        System.out.println("------------------------------------STARTING----------------------------------------");
+        startRefreshing();
+        startFunctions();
 
-        TM.run();
+    }
 
+    public static void startRefreshing(){
+        Runnable refreshThread = new refreshThread();
+        (new Thread(refreshThread)).start();
+    }
+
+    public static void startFunctions(){
+        Runnable functionThread = new functionThread();
+        (new Thread(functionThread)).start();
     }
 
 
