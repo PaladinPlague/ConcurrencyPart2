@@ -67,10 +67,11 @@ public class ThreadMonitor {
                 ", is daemon?: "+ thread.isDaemon( ));
     }
 
-    public void searchThread (String name) {
+    public void searchThread () {
         //Sets up a new scanner for this method
         //Asks the user for the name of a thread
-
+        System.out.print("Enter the thread name: ");
+        String name = sc.nextLine();
         //Closes the scanner after we're done
 
         //Searches for that specific thread
@@ -99,39 +100,13 @@ public class ThreadMonitor {
         //If it doesn't exist, tells the user
         System.out.println("There is no thread with this name");
     }
-    //Stopping the Tread
-    public void stopThread (String name) {
 
-
-
-        //Searches for that specific thread
-        //Uses the same methods as in run() to iterate through all threads
-        ThreadGroup[] TGS;
-        TGS = getAllTreadGroup();
-        for (ThreadGroup tg : TGS) {
-            int num_threads = tg.activeCount();
-            Thread[] Ts = new Thread[num_threads];
-            tg.enumerate(Ts,false);
-            for (int x = 0; x < num_threads; x++) {
-                //If the thread name is equal to the string the user is looking for, it returns that thread
-                if (Ts[x] != null) {
-                    if (Ts[x].getName().equals(name)) {
-                        //If it exists, we just interrupt the thread
-                        Ts[x].interrupt();
-                        System.out.println("Stopping thread(s) successful");
-                        return;
-                    }
-                }
-            }
-        }
-        //If it doesn't exist, tells the user
-        System.out.println("There is no thread with this name(s),");
-    }
-    public void filterGroup(String name) {
+    public void filterGroup() {
         //Sets up a new scanner for this method
         //Asks the user for the name of a thread group
+        System.out.print("Enter the group name: ");
+        String name = sc.nextLine();
 
-        System.out.println("Filtering Thread");
         //Uses the same methods as in run() to iterate through all threads
         ThreadGroup[] groups = getAllTreadGroup();
         for (ThreadGroup group : groups) {
@@ -141,9 +116,6 @@ public class ThreadMonitor {
                 Thread[] Ts = new Thread[num_threads];
                 group.enumerate(Ts, false);
                 for (int x = 0; x < num_threads; x++) {
-
-
-
                     //Print out the details of the current Thread
                     printThread(Ts[x]);
                 }
@@ -154,7 +126,26 @@ public class ThreadMonitor {
         System.out.println("No such thread group exists");
     }
 
+    public void funcRun(){
 
+        //Search for a thread via name
+        System.out.println();
+        //Asks the user if they want to search using a scanner to read lines
+        System.out.print("Search for a thread? [Y/N]: ");
+        //If they do, searches for a thread with a name later defined
+        if (sc.nextLine().equals("Y")) {
+            searchThread();
+        }
+
+        //Filter by a thread group
+        System.out.println();
+        //Asks the user if they want to filter the thread list by group
+        System.out.print("Filter by thread group? [Y/N]: ");
+        if (sc.nextLine().equals("Y")) {
+            filterGroup();
+        }
+
+    }
 
     public void tmRun(){
 
@@ -206,7 +197,7 @@ class functionThread implements Runnable{
 
         while (true){
             System.out.println("------------------------------------Question Time----------------------------------------");
-
+            monitor.funcRun();
         }
     }
 }
