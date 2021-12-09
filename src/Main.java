@@ -8,7 +8,7 @@ public class Main {
      *
      */
 
-    public static void main(String[  ] args) throws InterruptedException {
+    public static void main(String[  ] args){
 
         //Building multiply dummy Thread Groups each fills with some dummy threads
         //just check if the JVM Monitor Namely TM can pick it up.
@@ -22,13 +22,13 @@ public class Main {
 
     }
     public static void startRefreshing(){
-        Object refreshThread = new refreshThread();
-        (new Thread((Runnable) refreshThread)).start();
+        Runnable refreshThread = new refreshThread();
+        (new Thread(refreshThread)).start();
     }
 
     public static void startFunctions(){
-        Object functionThread = new functionThread();
-        (new Thread((Runnable) functionThread)).start();
+        Runnable functionThread = new functionThread();
+        (new Thread(functionThread)).start();
     }
 
 

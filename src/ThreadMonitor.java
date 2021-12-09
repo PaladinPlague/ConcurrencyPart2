@@ -170,25 +170,6 @@ public class ThreadMonitor {
             }
         }
 
-        /*
-        //Search for a thread via name
-        System.out.println();
-        //Asks the user if they want to search using a scanner to read lines
-        System.out.print("Search for a thread? [Y/N]: ");
-        //If they do, searches for a thread with a name later defined
-        if (sc.nextLine().equals("Y")) {
-            searchThread();
-        }
-
-        //Filter by a thread group
-        System.out.println();
-        //Asks the user if they want to filter the thread list by group
-        System.out.print("Filter by thread group? [Y/N]: ");
-        if (sc.nextLine().equals("Y")) {
-            filterGroup();
-        }
-
-         */
     }
 }
 class refreshThread implements Runnable{
