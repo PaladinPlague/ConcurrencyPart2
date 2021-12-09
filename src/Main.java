@@ -58,7 +58,7 @@ public class Main {
         filter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Hello");
+                System.out.println("Helle4teteo");
             }
         });
 
@@ -71,19 +71,13 @@ public class Main {
         //just check if the JVM Monitor Namely TM can pick it up.
         DummyGroups dg = new DummyGroups();
 
-        startRefreshing();
-        startFunctions();
+        //Create an instance of ThreadMonitor
+        ThreadMonitor TM = new ThreadMonitor();
+        //Run the Thread Monitor TM
+        System.out.println("------------------------------------STARTING----------------------------------------");
 
-    }
+        TM.run();
 
-    public static void startRefreshing(){
-        Runnable refreshThread = new refreshThread();
-        (new Thread(refreshThread)).start();
-    }
-
-    public static void startFunctions(){
-        Runnable functionThread = new functionThread();
-        (new Thread(functionThread)).start();
     }
 
 
