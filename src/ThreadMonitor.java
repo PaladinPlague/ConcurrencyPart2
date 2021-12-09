@@ -99,7 +99,34 @@ public class ThreadMonitor {
         //If it doesn't exist, tells the user
         System.out.println("There is no thread with this name");
     }
+    //Stopping the Tread
+    public void stopThread (String name) {
 
+
+
+        //Searches for that specific thread
+        //Uses the same methods as in run() to iterate through all threads
+        ThreadGroup[] TGS;
+        TGS = getAllTreadGroup();
+        for (ThreadGroup tg : TGS) {
+            int num_threads = tg.activeCount();
+            Thread[] Ts = new Thread[num_threads];
+            tg.enumerate(Ts,false);
+            for (int x = 0; x < num_threads; x++) {
+                //If the thread name is equal to the string the user is looking for, it returns that thread
+                if (Ts[x] != null) {
+                    if (Ts[x].getName().equals(name)) {
+                        //If it exists, we just interrupt the thread
+                        Ts[x].interrupt();
+                        System.out.println("Stopping thread(s) successful");
+                        return;
+                    }
+                }
+            }
+        }
+        //If it doesn't exist, tells the user
+        System.out.println("There is no thread with this name(s),");
+    }
     public void filterGroup(String name) {
         //Sets up a new scanner for this method
         //Asks the user for the name of a thread group
@@ -114,6 +141,9 @@ public class ThreadMonitor {
                 Thread[] Ts = new Thread[num_threads];
                 group.enumerate(Ts, false);
                 for (int x = 0; x < num_threads; x++) {
+
+
+
                     //Print out the details of the current Thread
                     printThread(Ts[x]);
                 }
@@ -124,11 +154,7 @@ public class ThreadMonitor {
         System.out.println("No such thread group exists");
     }
 
-    public void funcRun(){
 
-
-
-    }
 
     public void tmRun(){
 
@@ -180,7 +206,7 @@ class functionThread implements Runnable{
 
         while (true){
             System.out.println("------------------------------------Question Time----------------------------------------");
-            monitor.funcRun();
+
         }
     }
 }
